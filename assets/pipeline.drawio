@@ -1,0 +1,127 @@
+<mxfile host="app.diagrams.net" modified="2024-03-14T08:57:40.924Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 Edg/122.0.0.0" etag="KJj9Azmdqwe-Gtb4ada3" version="24.0.6" type="device">
+  <diagram id="2f404044-711c-603c-8f00-f6bb4c023d3c" name="Page-1">
+    <mxGraphModel dx="2555" dy="-68" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-112" value="EDA" style="fontStyle=0;verticalAlign=top;align=center;spacingTop=-2;fillColor=none;rounded=0;whiteSpace=wrap;html=1;strokeColor=#FF6666;strokeWidth=2;dashed=1;container=1;collapsible=0;expand=0;recursiveResize=0;" vertex="1" parent="1">
+          <mxGeometry x="-50" y="920" width="240" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-70" value="Training" style="fontStyle=0;verticalAlign=top;align=center;spacingTop=-2;fillColor=none;rounded=0;whiteSpace=wrap;html=1;strokeColor=#FF0000;strokeWidth=2;dashed=1;container=1;collapsible=0;expand=0;recursiveResize=0;" vertex="1" parent="1">
+          <mxGeometry x="570" y="920" width="350" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-69" value="Data Preparation" style="fontStyle=0;verticalAlign=top;align=center;spacingTop=-2;fillColor=none;rounded=0;whiteSpace=wrap;html=1;strokeColor=#00882B;strokeWidth=2;dashed=1;container=1;collapsible=0;expand=0;recursiveResize=0;" vertex="1" parent="1">
+          <mxGeometry x="200" y="920" width="320" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-110" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="B_jsOdyC0IOGlUP3P-V3-62" target="B_jsOdyC0IOGlUP3P-V3-64">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint y="1030" />
+              <mxPoint y="980" />
+              <mxPoint x="260" y="980" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-111" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="B_jsOdyC0IOGlUP3P-V3-62" target="B_jsOdyC0IOGlUP3P-V3-63">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-62" value="Data" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=default;fontSize=12;spacingTop=3;image=img/lib/ibm/data/data_services.svg;" vertex="1" parent="1">
+          <mxGeometry x="-160" y="1000" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="B_jsOdyC0IOGlUP3P-V3-63" target="B_jsOdyC0IOGlUP3P-V3-64">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-63" value="Exploratory Data Analysis" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=default;fontSize=12;spacingTop=3;image=img/lib/ibm/data/enterprise_data.svg;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1000" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="B_jsOdyC0IOGlUP3P-V3-64" target="B_jsOdyC0IOGlUP3P-V3-65">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-64" value="Data Validation" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=default;fontSize=12;spacingTop=3;image=img/lib/ibm/data/device_identity_service.svg;" vertex="1" parent="1">
+          <mxGeometry x="230" y="1000" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-81" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="B_jsOdyC0IOGlUP3P-V3-65" target="B_jsOdyC0IOGlUP3P-V3-66">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-65" value="Data pre-processing" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=default;fontSize=12;spacingTop=3;image=img/lib/ibm/management/cluster_management.svg;" vertex="1" parent="1">
+          <mxGeometry x="420" y="1000" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="B_jsOdyC0IOGlUP3P-V3-66" target="B_jsOdyC0IOGlUP3P-V3-67">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-66" value="Model Training" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=default;fontSize=12;spacingTop=3;image=img/lib/ibm/data/model.svg;" vertex="1" parent="1">
+          <mxGeometry x="610" y="1000" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-83" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="B_jsOdyC0IOGlUP3P-V3-67" target="B_jsOdyC0IOGlUP3P-V3-66">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="840" y="980" />
+              <mxPoint x="640" y="980" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-84" value="Hyper parameter tuning" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="B_jsOdyC0IOGlUP3P-V3-83">
+          <mxGeometry x="-0.0083" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-85" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="B_jsOdyC0IOGlUP3P-V3-67" target="B_jsOdyC0IOGlUP3P-V3-71">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-67" value="Model Validation" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=default;fontSize=12;spacingTop=3;image=img/lib/ibm/vpc/Rules.svg;" vertex="1" parent="1">
+          <mxGeometry x="810" y="1000" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="B_jsOdyC0IOGlUP3P-V3-71" target="B_jsOdyC0IOGlUP3P-V3-72">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-71" value="Versioning and packaging" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=default;fontSize=12;spacingTop=3;image=img/lib/ibm/social/file_sync.svg;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="1000" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="B_jsOdyC0IOGlUP3P-V3-72" target="B_jsOdyC0IOGlUP3P-V3-92">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-99" value="Deploy Model with Prediction Service" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="B_jsOdyC0IOGlUP3P-V3-96">
+          <mxGeometry x="-0.2552" y="2" relative="1" as="geometry">
+            <mxPoint x="-116" y="47" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-72" value="Deploy" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=default;fontSize=12;spacingTop=3;image=img/lib/ibm/devops/devops.svg;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="1181" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-104" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;fillColor=#f8cecc;strokeColor=#b85450;" edge="1" parent="1" source="B_jsOdyC0IOGlUP3P-V3-87" target="B_jsOdyC0IOGlUP3P-V3-64">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="260" y="1380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-105" value="Trigger re-training&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="B_jsOdyC0IOGlUP3P-V3-104">
+          <mxGeometry x="-0.4068" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-87" value="Monitoring" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=default;fontSize=12;spacingTop=3;image=img/lib/ibm/infrastructure/monitoring_logging.svg;" vertex="1" parent="1">
+          <mxGeometry x="525" y="1350" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-107" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="B_jsOdyC0IOGlUP3P-V3-88" target="B_jsOdyC0IOGlUP3P-V3-92">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-88" value="Application - consumer" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=default;fontSize=12;spacingTop=3;image=img/lib/ibm/management/provider_cloud_portal_service.svg;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="1350" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="B_jsOdyC0IOGlUP3P-V3-92" target="B_jsOdyC0IOGlUP3P-V3-87">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-92" value="Prediction Service Instance" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;fontColor=#4277BB;labelBackgroundColor=default;fontSize=12;spacingTop=3;image=img/lib/ibm/management/process_management.svg;" vertex="1" parent="1">
+          <mxGeometry x="740" y="1350" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-108" value="Running Environment" style="fontStyle=0;verticalAlign=top;align=left;spacingTop=-2;rounded=0;whiteSpace=wrap;html=1;strokeWidth=2;dashed=1;container=1;collapsible=0;expand=0;recursiveResize=0;fillColor=none;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="490" y="1290" width="660" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="B_jsOdyC0IOGlUP3P-V3-109" value="Source/Version Control" style="fontStyle=0;verticalAlign=top;align=center;spacingTop=-2;fillColor=none;rounded=0;whiteSpace=wrap;html=1;strokeColor=#3399FF;strokeWidth=2;dashed=1;container=1;collapsible=0;expand=0;recursiveResize=0;" vertex="1" parent="1">
+          <mxGeometry x="990" y="920" width="160" height="360" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
