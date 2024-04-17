@@ -13,7 +13,11 @@ class Logger(metaclass=SingletonMeta):
 
     def setup(self) -> None:
         self.logger.setLevel(logging.DEBUG)
-        self.logger.addHandler(logging.FileHandler('logs/messages.log', mode='w'))
+        self.logger.addHandler(logging.FileHandler(
+            'logs/messages.log', mode='w'))
 
     def log_info(self, msg: object) -> None:
         self.logger.log(level=logging.INFO, msg=msg)
+
+    def log_error(self, msg: object) -> None:
+        self.logger.log(level=logging.ERROR, msg=msg)

@@ -1,8 +1,10 @@
-from common.logger import Logger
+from components.data_reporter import DataReporter
+
 
 def start() -> None:
-    logger = Logger()
-    logger.log_info("My message")
+    dr = DataReporter()
+    dr.get_filtered_bean_data()
+
 
 if __name__ == '__main__':
     start()
