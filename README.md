@@ -7,3 +7,5 @@ This report aims to put into practice the knowledge acquired during the course o
 > [!NOTE]
 >***You will find a more detailed report in PDF format about the analysis and results of this exercise under the report directory.***
 >***You can also find the EDA in the Jupyter Notebook located under report/eda.***
+
+Ya contestame cabron !!!
