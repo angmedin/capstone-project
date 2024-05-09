@@ -1,15 +1,17 @@
+import logging
+import warnings
 from typing import Any, Dict, List
 
 import mysql.connector as mysqlc
 from mysql.connector.connection import MySQLConnection
 from mysql.connector.types import RowItemType, RowType
 
-from common.logger import Logger
+warnings.filterwarnings('ignore')
 
 
 class MySQLQueryEngine:
     """
-    Establishes a connection to a MySQL database and executes queries.
+    Establishes a connection to a MySQL database and perform queries.
     """
 
     def __init__(self,
@@ -22,7 +24,6 @@ class MySQLQueryEngine:
         self.password = password
         self.database = database
         self.connection = None
-        self.logger = Logger()
 
     def connect(self) -> MySQLConnection | None:
         try:
@@ -32,16 +33,14 @@ class MySQLQueryEngine:
                 password=self.password,
                 database=self.database
             )
-            self.logger.log_info("Connection established")
         except mysqlc.Error as err:
-            self.logger.log_error(
-                f"Connection could not be established {err.msg}")
+            logging.error(f"Connection could not be established {err.msg}")
 
         return self.connection
 
     def execute_query(self, query: str) -> List[RowType | Dict[str, RowItemType]] | Any:
         if not self.connection:
-            self.logger.log_error("A MySQL connection is required")
+            logging.warning("A MySQL connection is required")
             return
 
         try:
@@ -51,10 +50,10 @@ class MySQLQueryEngine:
             cursor.close()
             return result
         except mysqlc.Error as err:
-            self.logger.log_error(
+            logging.error(
                 f"Could not execute the query: {query}. Reason: {err.msg}")
 
     def close(self) -> None:
-        if self.connection:
+        if self.connection and self.connection.is_connected():
             self.connection.close()
-            self.logger.log_info("Connection closed")
+            logging.info("Connection closed")

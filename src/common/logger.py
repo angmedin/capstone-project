@@ -1,23 +1,35 @@
 import logging
+import logging.config
 from typing import Optional
+
 from utils.singleton_metaclass import SingletonMeta
 
 
 class Logger(metaclass=SingletonMeta):
 
-    default_logger = 'app'
+    DEFAULT_LOGGER = 'app'
 
-    def __init__(self, logger_name: Optional[str] = None) -> None:
-        self.logger = logging.getLogger(logger_name or self.default_logger)
-        self.setup()
+    LOG_CONFIG = {
+        "version": 1,
+        "root": {
+            "handlers": ["console"],
+            "level": "DEBUG"
+        },
+        "handlers": {
+            "console": {
+                "formatter": "simple",
+                "class": "logging.StreamHandler",
+                "level": "DEBUG"
+            }
+        },
+        "formatters": {
+            "simple": {
+                "format": "%(asctime)s - %(levelname)s - %(module)s:%(lineno)d [%(threadName)s] : %(message)s",
+                "datefmt": "%d-%m-%Y %I:%M:%S"
+            }
+        }
+    }
 
-    def setup(self) -> None:
-        self.logger.setLevel(logging.DEBUG)
-        self.logger.addHandler(logging.FileHandler(
-            'logs/messages.log', mode='w'))
-
-    def log_info(self, msg: object) -> None:
-        self.logger.log(level=logging.INFO, msg=msg)
-
-    def log_error(self, msg: object) -> None:
-        self.logger.log(level=logging.ERROR, msg=msg)
+    @staticmethod
+    def setup(config: Optional[dict] = LOG_CONFIG) -> None:
+        logging.config.dictConfig(config=config)

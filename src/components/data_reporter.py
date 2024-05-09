@@ -1,6 +1,7 @@
+import logging
+
 import pandas as pd
 
-from common.logger import Logger
 from components.mysql_query_engine import MySQLQueryEngine
 from entity.bean import BeanProperties as bp
 
@@ -8,11 +9,11 @@ from entity.bean import BeanProperties as bp
 class DataReporter():
     def __init__(self) -> None:
         self.query_engine = MySQLQueryEngine()
-        self.logger = Logger()
         self.mysql_connection = self.query_engine.connect()
 
     def __del__(self) -> None:
-        self.mysql_connection.close()
+        if self.mysql_connection and self.mysql_connection.is_connected():
+            self.mysql_connection.close()
 
     def get_all_bean_data(self) -> pd.DataFrame | None:
         query = """
@@ -20,16 +21,14 @@ class DataReporter():
         """
 
         if self.mysql_connection is None:
-            self.logger.log_error(
-                "Aborting data fetch. No connection available.")
+            logging.error("Aborting data fetch. No connection available.")
             return None
 
         try:
             df = pd.read_sql(sql=query, con=self.mysql_connection)
             return df
         except Exception as ex:
-            self.logger.log_error(
-                f"Error while fetching: {ex}")
+            logging.error(f"Error while fetching: {ex}")
 
         return None
 
@@ -41,26 +40,25 @@ class DataReporter():
                     {bp.solidity}, {bp.roundness}, {bp.compactness}, {bp.shape_factor_1}, 
                     {bp.shape_factor_2}, {bp.shape_factor_2}, {bp.shape_factor_3}, 
                     {bp.shape_factor_4}, {bp.clazz}
-            FROM bean
+            FROM 
+                bean
             WHERE
-                {bp.eccentricity} >= 0.3
-            AND {bp.convex_area} <= 250000
-            AND {bp.solidity} >= 0.94
-            AND {bp.roundness} >= 0.51
-            AND {bp.shape_factor_1} <= 0.0104
-            AND {bp.shape_factor_4} >= 0.954
+                    {bp.eccentricity} >= 0.3
+                AND {bp.convex_area} <= 250000
+                AND {bp.solidity} >= 0.94
+                AND {bp.roundness} >= 0.51
+                AND {bp.shape_factor_1} <= 0.0104
+                AND {bp.shape_factor_4} >= 0.954
         """
 
         if self.mysql_connection is None:
-            self.logger.log_error(
-                "Aborting data fetch. No connection available.")
+            logging.error("Aborting data fetch. No connection available.")
             return None
 
         try:
             df = pd.read_sql(sql=query, con=self.mysql_connection)
             return df
         except Exception as ex:
-            self.logger.log_error(
-                f"Error while fetching: {ex}")
+            logging.error(f"Error while fetching: {ex}")
 
         return None
