@@ -17,7 +17,7 @@ def train_model(config_path: str) -> None:
         config_path {str}: Path to yaml configuration file.
     """
 
-    logging.info("Stage 5: train.")
+    logging.info("Stage 4: train.")
 
     with open(config_path) as conf_file:
         config = yaml.safe_load(conf_file)
