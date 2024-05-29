@@ -4,10 +4,9 @@ import logging
 import joblib
 import pandas as pd
 import yaml
-from dvclive import Live
-from sklearn.svm import SVC
 
-from entity.bean import BeanProperties as bp
+from components.svc_model_trainer import SVCModelTrainer
+from dvclive import Live
 from utils.dir_utils import DirUtils
 
 
@@ -22,21 +21,15 @@ def train_model(config_path: str) -> None:
     with open(config_path) as conf_file:
         config = yaml.safe_load(conf_file)
 
-    logging.info('Load train dataset.')
+    logging.info("Load train dataset.")
     train_df = pd.read_csv(config['data_split']['trainset_path'])
 
-    # Split the data into features (X) and target variable (y)
-    X = train_df.drop([bp.clazz], axis=1)
-    y = train_df[bp.clazz]
+    model_trainer = SVCModelTrainer()
 
-    # Create model
-    logging.info('Train model.')
-    model = SVC(max_iter=1000, random_state=42)
+    logging.info("Training model.")
+    model = model_trainer.train_model(train_data=train_df)
 
-    # Fit the model to the training data
-    model.fit(X, y)
-
-    # Save the model
+    logging.info("Trying to save model.")
     models_path = config['train']['model_path']
 
     try:

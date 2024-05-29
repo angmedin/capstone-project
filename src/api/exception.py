@@ -7,5 +7,10 @@ class SqlEngineException(Exception):
 class DataPreparationException(Exception):
     pass
 
+
 class DirectoryCreateException(Exception):
+    pass
+
+
+class ModelTrainException(Exception):
     pass

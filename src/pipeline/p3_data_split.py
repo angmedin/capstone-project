@@ -1,12 +1,10 @@
 import argparse
 import logging
 
-import pandas as pd
 import yaml
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
+from pandas import read_csv
 
-from entity.bean import BeanProperties as bp
+from components.svc_model_trainer import SVCModelTrainer
 from utils.dir_utils import DirUtils
 
 
@@ -23,26 +21,20 @@ def data_split(config_path: str) -> None:
 
     logging.info("Reading featurized dataset.")
     features_path = config['featurize']['features_path']
-    data = pd.read_csv(features_path)
+    data = read_csv(features_path)
 
-    # Data split
+    model_trainer = SVCModelTrainer()
+
     logging.info("Data split.")
-    train_dataset, test_dataset = train_test_split(
-        data,
+    train_dataset, test_dataset = model_trainer.split_train_test_data(
+        data=data,
         test_size=config['data_split']['test_size'],
-        random_state=config['base']['random_state'],
-        shuffle=True)
+        random_state=config['base']['random_state'])
 
-    # Feature Scaling
     logging.info("Feature scaling.")
-    columns: list[str] = train_dataset.columns.drop(bp.clazz).to_list()
+    model_trainer.scale_features(train_dataset=train_dataset)
 
-    standard_scaler = StandardScaler()
-    train_dataset[columns] = pd.DataFrame(
-        standard_scaler.fit_transform(train_dataset[columns]),
-        index=train_dataset.index)
-
-    # Save datasets
+    logging.info("Trying to save train and test datasets.")
     try:
         train_csv_path = config['data_split']['trainset_path']
         test_csv_path = config['data_split']['testset_path']

@@ -17,7 +17,6 @@ data_split:
 
 
 train:
-
   cv: 3
   estimator_name: rdm_forest
   estimators:

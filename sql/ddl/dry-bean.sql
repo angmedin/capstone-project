@@ -33,5 +33,3 @@ CREATE TABLE `bean` (
 CREATE INDEX `bean_idx_load_timestamp` ON `bean`(`load_timestamp`);
 
 COMMIT;
-
-select * from dry_bean.bean;

@@ -1,11 +1,10 @@
 import argparse
 import logging
 
-import pandas as pd
 import yaml
-from sklearn.preprocessing import LabelEncoder
+from pandas import DataFrame, read_csv
 
-from entity.bean import BeanProperties as bp
+from components.svc_model_trainer import SVCModelTrainer
 from utils.dir_utils import DirUtils
 
 
@@ -21,17 +20,15 @@ def featurize(config_path: str) -> None:
         config = yaml.safe_load(conf_file)
 
     logging.info("Reading prepared dataset.")
-    raw_data = pd.read_csv(config['data_load']['dataset_prepare'])
+    raw_data: DataFrame = read_csv(config['data_load']['dataset_prepare'])
 
-    # Drop columns
+    model_trainer = SVCModelTrainer()
+
     logging.info("Dropping unused columns.")
-    cols_to_drop = [bp.area, bp.perimeter, bp.compactness, bp.shape_factor_3]
-    data = raw_data.drop(columns=cols_to_drop)
+    data: DataFrame = model_trainer.drop_columns(data=raw_data)
 
-    # Encode target labels with value between 0 and n_classes-1
     logging.info("Encoding categorical feature.")
-    label_encoder = LabelEncoder()
-    data[bp.clazz] = label_encoder.fit_transform(data[bp.clazz])
+    model_trainer.encode_labels(data=data)
 
     try:
         file_path = config['featurize']['features_path']

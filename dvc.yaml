@@ -1,0 +1,9 @@
+artifacts:
+  beans_classifier:
+    path: models/model.joblib
+    type: model
+    desc: Simple and fast dry bean classifier.
+    labels:
+    - svc
+    - classification
+    - bean
