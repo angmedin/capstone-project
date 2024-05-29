@@ -25,7 +25,7 @@ class DataReporter():
             return None
 
         try:
-            df = pd.read_sql(sql=query, con=self.mysql_connection)
+            df = read_sql(sql=query, con=self.mysql_connection)
             return df
         except Exception as ex:
             logging.error(f"Error while fetching: {ex}")
