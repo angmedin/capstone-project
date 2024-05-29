@@ -1,6 +1,6 @@
 import logging
 
-import pandas as pd
+from pandas import DataFrame, read_sql
 
 from components.mysql_query_engine import MySQLQueryEngine
 from entity.bean import BeanProperties as bp
@@ -15,7 +15,7 @@ class DataReporter():
         if self.mysql_connection and self.mysql_connection.is_connected():
             self.mysql_connection.close()
 
-    def get_all_bean_data(self) -> pd.DataFrame | None:
+    def get_all_bean_data(self) -> DataFrame | None:
         query = """
             SELECT * FROM bean
         """
@@ -32,7 +32,7 @@ class DataReporter():
 
         return None
 
-    def get_filtered_bean_data(self) -> pd.DataFrame | None:
+    def get_filtered_bean_data(self) -> DataFrame | None:
         query = f"""
             SELECT  {bp.area}, {bp.perimeter}, {bp.major_axis_length}, 
                     {bp.minor_axis_length}, {bp.aspect_ration}, {bp.eccentricity}, 
@@ -56,7 +56,7 @@ class DataReporter():
             return None
 
         try:
-            df = pd.read_sql(sql=query, con=self.mysql_connection)
+            df = read_sql(sql=query, con=self.mysql_connection)
             return df
         except Exception as ex:
             logging.error(f"Error while fetching: {ex}")

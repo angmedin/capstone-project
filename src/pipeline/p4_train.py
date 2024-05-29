@@ -2,8 +2,8 @@ import argparse
 import logging
 
 import joblib
-import pandas as pd
 import yaml
+from pandas import read_csv
 
 from components.svc_model_trainer import SVCModelTrainer
 from dvclive import Live
@@ -22,7 +22,7 @@ def train_model(config_path: str) -> None:
         config = yaml.safe_load(conf_file)
 
     logging.info("Load train dataset.")
-    train_df = pd.read_csv(config['data_split']['trainset_path'])
+    train_df = read_csv(config['data_split']['trainset_path'])
 
     model_trainer = SVCModelTrainer()
 
