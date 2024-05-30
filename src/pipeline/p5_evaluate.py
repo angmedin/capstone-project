@@ -2,8 +2,8 @@ import argparse
 import json
 import logging
 
-from pandas import read_csv
 import yaml
+from pandas import read_csv
 
 from components.svc_model_trainer import SVCModelTrainer
 from dvclive import Live
@@ -30,8 +30,7 @@ def evaluate_model(config_path: str) -> None:
     model_path = config['train']['model_path']
     report = model_trainer.evaluate_model(
         test_dataset=test_df, model_path=model_path)
-    print(report)
-    
+
     if report is None:
         logging.error("Couldn't generate report. Aborting.")
         return
@@ -48,6 +47,14 @@ def evaluate_model(config_path: str) -> None:
         logging.info(f"CSV file created successfully in {metrics_file_path}.")
     except Exception as e:
         logging.error(e)
+
+    logging.info("Logging metrics.")
+    with Live() as live:
+        live.log_metric("accuracy", report['accuracy'])
+        live.log_metric("macro/precision", report['macro avg']['precision'])
+        live.log_metric("macro/recall", report['macro avg']['recall'])
+        live.log_metric("macro/f1-score", report['macro avg']['f1-score'])
+        live.log_metric("macro/support", report['macro avg']['support'])
 
 
 if __name__ == '__main__':

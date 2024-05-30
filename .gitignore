@@ -3,6 +3,7 @@
 __pycache__/
 *.py[cod]
 data/processed/*
+models/model.joblib
 
 # Distribution / packaging
 bin/
