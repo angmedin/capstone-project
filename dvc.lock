@@ -1,0 +1,127 @@
+schema: '2.0'
+stages:
+  data_prepare:
+    cmd: python -m src.pipeline.p1_data_prepare --config=params.yaml
+    deps:
+    - path: src/pipeline/p1_data_prepare.py
+      hash: md5
+      md5: 963d0173a060cd2d798fb372a8f68e1e
+      size: 1272
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+        data_load:
+          dataset_prepare: data/processed/prepare_beans.csv
+    outs:
+    - path: data/processed/prepare_beans.csv
+      hash: md5
+      md5: 7e173fa07b0c4d58c9cb57876aa9599b
+      size: 2644236
+  featurize:
+    cmd: python -m src.pipeline.p2_featurize --config=params.yaml
+    deps:
+    - path: data/processed/prepare_beans.csv
+      hash: md5
+      md5: 7e173fa07b0c4d58c9cb57876aa9599b
+      size: 2644236
+    - path: src/pipeline/p2_featurize.py
+      hash: md5
+      md5: 8f067c4d1e3d9b8d6918fb730f1172eb
+      size: 1474
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+        data_load:
+          dataset_prepare: data/processed/prepare_beans.csv
+        featurize:
+          features_path: data/processed/featured_beans.csv
+    outs:
+    - path: data/processed/featured_beans.csv
+      hash: md5
+      md5: 76e9cb55fb765eb402dee51b65a1bd24
+      size: 2063108
+  data_split:
+    cmd: python -m src.pipeline.p3_data_split --config=params.yaml
+    deps:
+    - path: data/processed/featured_beans.csv
+      hash: md5
+      md5: 76e9cb55fb765eb402dee51b65a1bd24
+      size: 2063108
+    - path: src/pipeline/p3_data_split.py
+      hash: md5
+      md5: 3f0c7ce6d0078b22b077a9356300b74a
+      size: 1819
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+        data_load:
+          dataset_prepare: data/processed/prepare_beans.csv
+        data_split:
+          test_size: 0.2
+          trainset_path: data/processed/train_beans.csv
+          testset_path: data/processed/test_beans.csv
+        featurize:
+          features_path: data/processed/featured_beans.csv
+    outs:
+    - path: data/processed/test_beans.csv
+      hash: md5
+      md5: 6f8c2b7e5eaedb59f7601a261736d7fc
+      size: 703127
+    - path: data/processed/train_beans.csv
+      hash: md5
+      md5: 951187e01f1833a1feca78929d65ff2c
+      size: 2812830
+  train:
+    cmd: python -m src.pipeline.p4_train --config=params.yaml
+    deps:
+    - path: data/processed/train_beans.csv
+      hash: md5
+      md5: 951187e01f1833a1feca78929d65ff2c
+      size: 2812830
+    - path: src/pipeline/p4_train.py
+      hash: md5
+      md5: dfbff597441334158ec06c0ee760fcc6
+      size: 1620
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+        data_split.trainset_path: data/processed/train_beans.csv
+        train:
+          model_path: models/model.joblib
+    outs:
+    - path: models/model.joblib
+      hash: md5
+      md5: f0be50ccce37a5370f48623ab14349b7
+      size: 482619
+  evaluate:
+    cmd: python -m src.pipeline.p5_evaluate --config=params.yaml
+    deps:
+    - path: data/processed/test_beans.csv
+      hash: md5
+      md5: 6f8c2b7e5eaedb59f7601a261736d7fc
+      size: 703127
+    - path: models/model.joblib
+      hash: md5
+      md5: f0be50ccce37a5370f48623ab14349b7
+      size: 482619
+    - path: src/pipeline/p5_evaluate.py
+      hash: md5
+      md5: ab1f9ad291b98555508ca90b41c7d738
+      size: 2147
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+        data_split.testset_path: data/processed/test_beans.csv
+        evaluate:
+          reports_dir: reports
+          metrics_file: metrics.json
+    outs:
+    - path: reports/metrics.json
+      hash: md5
+      md5: cfa768ea448428c8514fd821feb9c091
+      size: 1085

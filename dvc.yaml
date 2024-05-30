@@ -1,5 +1,4 @@
 stages:
-  
   data_prepare:
     cmd: python -m src.pipeline.p1_data_prepare --config=params.yaml
     deps:
@@ -9,7 +8,7 @@ stages:
     - data_load
     outs:
     - data/processed/prepare_beans.csv
-  
+
   featurize:
     cmd: python -m src.pipeline.p2_featurize --config=params.yaml
     deps:
