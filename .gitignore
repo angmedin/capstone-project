@@ -4,6 +4,7 @@ __pycache__/
 *.py[cod]
 data/processed/*
 models/model.joblib
+.env
 
 # Distribution / packaging
 bin/
