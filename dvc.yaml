@@ -1,3 +1,68 @@
+stages:
+  
+  data_prepare:
+    cmd: python -m src.pipeline.p1_data_prepare --config=params.yaml
+    deps:
+    - src/pipeline/p1_data_prepare.py
+    params:
+    - base
+    - data_load
+    outs:
+    - data/processed/prepare_beans.csv
+  
+  featurize:
+    cmd: python -m src.pipeline.p2_featurize --config=params.yaml
+    deps:
+    - src/pipeline/p2_featurize.py
+    - data/processed/prepare_beans.csv
+    params:
+    - base
+    - data_load
+    - featurize
+    outs:
+    - data/processed/featured_beans.csv
+
+  data_split:
+    cmd: python -m src.pipeline.p3_data_split --config=params.yaml
+    deps:
+    - src/pipeline/p3_data_split.py
+    - data/processed/featured_beans.csv
+    params:
+    - base
+    - data_load
+    - featurize
+    - data_split
+    outs:
+    - data/processed/test_beans.csv
+    - data/processed/train_beans.csv
+
+  train:
+    cmd: python -m src.pipeline.p4_train --config=params.yaml
+    deps:
+    - src/pipeline/p4_train.py
+    - data/processed/train_beans.csv
+    outs:
+    - models/model.joblib
+    params:
+    - base
+    - data_split.trainset_path
+    - train
+
+  evaluate:
+    cmd: python -m src.pipeline.p5_evaluate --config=params.yaml
+    deps:
+    - src/pipeline/p5_evaluate.py
+    - data/processed/test_beans.csv
+    - models/model.joblib
+    params:
+    - base
+    - data_split.testset_path
+    - evaluate
+    metrics:
+    - reports/metrics.json:
+        cache: false
+
+
 artifacts:
   beans_classifier:
     path: models/model.joblib
