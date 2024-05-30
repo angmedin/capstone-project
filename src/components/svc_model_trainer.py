@@ -1,4 +1,6 @@
+from joblib import load
 from pandas import DataFrame
+from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.svm import SVC
@@ -55,3 +57,21 @@ class SVCModelTrainer(AbstractModelTrainer):
         y = train_data[bp.clazz]
 
         return self.model.fit(X, y)
+
+    def evaluate_model(self, test_dataset: DataFrame, model_path: str = None) -> dict | None:
+        if model_path is not None:
+            self.load_model(model_path=model_path)
+
+        y_test = test_dataset.loc[:, bp.clazz]
+        X_test = test_dataset.drop(bp.clazz, axis=1)
+
+        if self.model.fit_status_ != 0:
+            return None
+
+        y_pred = self.model.predict(X_test)
+        print(set(y_test) - set(y_pred))
+        return classification_report(
+            y_true=y_test, y_pred=y_pred, output_dict=True)
+
+    def load_model(self, model_path: str) -> None:
+        self.model = load(model_path)

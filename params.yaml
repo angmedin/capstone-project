@@ -17,27 +17,9 @@ data_split:
 
 
 train:
-  cv: 3
-  estimator_name: rdm_forest
-  estimators:
-    logreg: # sklearn.linear_model.LogisticRegression
-      param_grid: # params of GridSearchCV constructor
-        C: [0.005]
-        max_iter: [100]
-        solver: ['lbfgs']
-        multi_class: ['multinomial']
-    svm: # sklearn.svm.SVC
-      param_grid:
-        C: [0.1, 1.0]
-        kernel: ['rbf', 'linear']
-        gamma: ['scale']
-        degree: [3, 5]
-    rdm_forest:
-      param_grid:
   model_path: models/model.joblib
 
 
 evaluate:
   reports_dir: reports
   metrics_file: 'metrics.json'
-  confusion_matrix_image: 'confusion_matrix.png'

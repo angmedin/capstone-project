@@ -68,3 +68,27 @@ class AbstractModelTrainer(ABC):
             object: Model.
         """
         pass
+
+    @abstractmethod
+    def evaluate_model(self, test_dataset: DataFrame, model_path: str = None) -> dict | None:
+        """Evaluate the model under ``model_path`` based on the provided
+        ``test_dataset``. Returns a dictonary containing all the metrics.
+
+        Args:
+            test_dataset (DataFrame): Test dataframe.
+            model_path (str, optional): Path to the model. Defaults to None.
+
+        Returns:
+            dict | None: Dictionary containing the metrics.
+        """
+        pass
+
+    @abstractmethod
+    def load_model(self, model_path: str) -> None:
+        """Load the model under ``model_path`` and set it as self 
+        model attribute.
+
+        Args:
+            model_path (str): Path to the model.
+        """
+        pass
