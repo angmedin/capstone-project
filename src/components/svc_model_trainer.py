@@ -37,20 +37,22 @@ class SVCModelTrainer(AbstractModelTrainer):
     def split_train_test_data(
             self,
             data: DataFrame,
-            test_size: float,
-            random_state: int) -> list[DataFrame]:
+            test_size: float) -> list[DataFrame]:
         return train_test_split(
             data,
             test_size=test_size,
-            random_state=random_state,
+            random_state=None,
             shuffle=True)
 
-    def scale_features(self, train_dataset: DataFrame) -> None:
+    def scale_features(self, train_dataset: DataFrame, test_dataset: DataFrame) -> None:
         columns: list[str] = train_dataset.columns.drop(bp.clazz).to_list()
 
         train_dataset[columns] = DataFrame(
             self.scaler.fit_transform(train_dataset[columns]),
             index=train_dataset.index)
+        test_dataset[columns] = DataFrame(
+            self.scaler.fit_transform(test_dataset[columns]),
+            index=test_dataset.index)
 
     def train_model(self, train_data: DataFrame) -> SVC:
         X = train_data.drop([bp.clazz], axis=1)

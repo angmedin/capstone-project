@@ -28,11 +28,12 @@ def data_split(config_path: str) -> None:
     logging.info("Data split.")
     train_dataset, test_dataset = model_trainer.split_train_test_data(
         data=data,
-        test_size=config['data_split']['test_size'],
-        random_state=config['base']['random_state'])
+        test_size=config['data_split']['test_size'])
 
     logging.info("Feature scaling.")
-    model_trainer.scale_features(train_dataset=train_dataset)
+    model_trainer.scale_features(
+        train_dataset=train_dataset,
+        test_dataset=test_dataset)
 
     logging.info("Trying to save train and test datasets.")
     try:

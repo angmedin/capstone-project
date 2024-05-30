@@ -32,15 +32,13 @@ class AbstractModelTrainer(ABC):
     def split_train_test_data(
             self,
             data: DataFrame,
-            test_size: float,
-            random_state: int) -> list[DataFrame]:
+            test_size: float) -> list[DataFrame]:
         """Split the incoming dataframe into random train and test subsets, using 
         ``test_size`` to represent the proportion of the dataset to include in the test split.
 
         Args:
             data (DataFrame): Dataframe.
             test_size (float): Proportion of the dataset to include in the test split.
-            random_state (int): Controls the shuffling applied to the data before applying the split.
 
         Returns:
             list[DataFrame]: List of ``train_dataset`` and ``test_dataset``.
@@ -48,11 +46,12 @@ class AbstractModelTrainer(ABC):
         pass
 
     @abstractmethod
-    def scale_features(self, train_dataset: DataFrame) -> None:
+    def scale_features(self, train_dataset: DataFrame, test_dataset: DataFrame) -> None:
         """Apply the fit-transform function of the provided scaler.
 
         Args:
-            train_dataset (DataFrame): Dataframe.
+            train_dataset (DataFrame): Train dataframe.
+            test_dataset (DataFrame): Test dataframe.
         """
         pass
 
