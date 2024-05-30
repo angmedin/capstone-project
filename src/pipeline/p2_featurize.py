@@ -1,6 +1,7 @@
 import argparse
 import logging
 
+import joblib
 import yaml
 from pandas import DataFrame, read_csv
 
@@ -35,6 +36,11 @@ def featurize(config_path: str) -> None:
         DirUtils.exists_else_create_dir(file_path)
         data.to_csv(file_path, index=False)
         logging.info(f"CSV file created successfully in {file_path}.")
+
+        encoder_path = config['featurize']['encoder_path']
+        DirUtils.exists_else_create_dir(encoder_path)
+        joblib.dump(model_trainer.get_encoder(), encoder_path)
+        logging.info(f"Encoder file created successfully in {encoder_path}.")
     except Exception as e:
         logging.error(e)
 

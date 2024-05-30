@@ -29,6 +29,15 @@ class AbstractModelTrainer(ABC):
         pass
 
     @abstractmethod
+    def get_encoder(self) -> object:
+        """Returns the encoder.
+
+        Returns:
+            object: Encoder.
+        """
+        pass
+
+    @abstractmethod
     def split_train_test_data(
             self,
             data: DataFrame,
@@ -69,13 +78,18 @@ class AbstractModelTrainer(ABC):
         pass
 
     @abstractmethod
-    def evaluate_model(self, test_dataset: DataFrame, model_path: str = None) -> dict | None:
+    def evaluate_model(
+            self,
+            test_dataset: DataFrame,
+            model_path: str = None,
+            encoder_path: str = None) -> dict | None:
         """Evaluate the model under ``model_path`` based on the provided
         ``test_dataset``. Returns a dictonary containing all the metrics.
 
         Args:
             test_dataset (DataFrame): Test dataframe.
             model_path (str, optional): Path to the model. Defaults to None.
+            encoder_path (str, optional): Path to the encoder. Defaults to None.
 
         Returns:
             dict | None: Dictionary containing the metrics.
@@ -89,5 +103,15 @@ class AbstractModelTrainer(ABC):
 
         Args:
             model_path (str): Path to the model.
+        """
+        pass
+
+    @abstractmethod
+    def load_encoder(self, encoder_path: str) -> None:
+        """Load the encoder under ``encoder_path`` and set it as self 
+        encoder attribute.
+
+        Args:
+            encoder_path (str): Path to the encoder.
         """
         pass

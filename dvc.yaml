@@ -20,6 +20,7 @@ stages:
     - featurize
     outs:
     - data/processed/featured_beans.csv
+    - encoder/encoder.joblib
 
   data_split:
     cmd: python -m src.pipeline.p3_data_split --config=params.yaml
@@ -53,9 +54,11 @@ stages:
     - src/pipeline/p5_evaluate.py
     - data/processed/test_beans.csv
     - models/model.joblib
+    - encoder/encoder.joblib
     params:
     - base
     - data_split.testset_path
+    - featurize.encoder_path
     - evaluate
     metrics:
     - reports/metrics.json:

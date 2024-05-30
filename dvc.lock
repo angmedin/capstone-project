@@ -27,8 +27,8 @@ stages:
       size: 2644236
     - path: src/pipeline/p2_featurize.py
       hash: md5
-      md5: 8f067c4d1e3d9b8d6918fb730f1172eb
-      size: 1474
+      md5: 18c1ccdeddc280a39665efe1bfb1fa3c
+      size: 1749
     params:
       params.yaml:
         base:
@@ -37,11 +37,16 @@ stages:
           dataset_prepare: data/processed/prepare_beans.csv
         featurize:
           features_path: data/processed/featured_beans.csv
+          encoder_path: encoder/encoder.joblib
     outs:
     - path: data/processed/featured_beans.csv
       hash: md5
       md5: 76e9cb55fb765eb402dee51b65a1bd24
       size: 2063108
+    - path: encoder/encoder.joblib
+      hash: md5
+      md5: d0336c2e591a3526d16684fce3b0edce
+      size: 607
   data_split:
     cmd: python -m src.pipeline.p3_data_split --config=params.yaml
     deps:
@@ -65,22 +70,23 @@ stages:
           testset_path: data/processed/test_beans.csv
         featurize:
           features_path: data/processed/featured_beans.csv
+          encoder_path: encoder/encoder.joblib
     outs:
     - path: data/processed/test_beans.csv
       hash: md5
-      md5: 6f8c2b7e5eaedb59f7601a261736d7fc
-      size: 703127
+      md5: 1cab299390964aea45de2db51f520b44
+      size: 703642
     - path: data/processed/train_beans.csv
       hash: md5
-      md5: 951187e01f1833a1feca78929d65ff2c
-      size: 2812830
+      md5: 4210d306eeb69474fe1952eae47e5796
+      size: 2812228
   train:
     cmd: python -m src.pipeline.p4_train --config=params.yaml
     deps:
     - path: data/processed/train_beans.csv
       hash: md5
-      md5: 951187e01f1833a1feca78929d65ff2c
-      size: 2812830
+      md5: 4210d306eeb69474fe1952eae47e5796
+      size: 2812228
     - path: src/pipeline/p4_train.py
       hash: md5
       md5: dfbff597441334158ec06c0ee760fcc6
@@ -95,23 +101,27 @@ stages:
     outs:
     - path: models/model.joblib
       hash: md5
-      md5: f0be50ccce37a5370f48623ab14349b7
-      size: 482619
+      md5: 0e7cdf9b568e424288cd0466002f0c6e
+      size: 480571
   evaluate:
     cmd: python -m src.pipeline.p5_evaluate --config=params.yaml
     deps:
     - path: data/processed/test_beans.csv
       hash: md5
-      md5: 6f8c2b7e5eaedb59f7601a261736d7fc
-      size: 703127
+      md5: 1cab299390964aea45de2db51f520b44
+      size: 703642
+    - path: encoder/encoder.joblib
+      hash: md5
+      md5: d0336c2e591a3526d16684fce3b0edce
+      size: 607
     - path: models/model.joblib
       hash: md5
-      md5: f0be50ccce37a5370f48623ab14349b7
-      size: 482619
+      md5: 0e7cdf9b568e424288cd0466002f0c6e
+      size: 480571
     - path: src/pipeline/p5_evaluate.py
       hash: md5
-      md5: ab1f9ad291b98555508ca90b41c7d738
-      size: 2147
+      md5: 96bdc253e90cb1c4686ee085402cfe74
+      size: 2230
     params:
       params.yaml:
         base:
@@ -120,8 +130,9 @@ stages:
         evaluate:
           reports_dir: reports
           metrics_file: metrics.json
+        featurize.encoder_path: encoder/encoder.joblib
     outs:
     - path: reports/metrics.json
       hash: md5
-      md5: cfa768ea448428c8514fd821feb9c091
-      size: 1085
+      md5: 947d1e494d62c918b79a87dd017e3805
+      size: 1118

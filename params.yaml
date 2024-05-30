@@ -8,6 +8,7 @@ data_load:
 
 featurize:
   features_path: 'data/processed/featured_beans.csv'
+  encoder_path: 'encoder/encoder.joblib'
 
 
 data_split:

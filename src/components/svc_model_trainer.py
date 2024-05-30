@@ -34,6 +34,9 @@ class SVCModelTrainer(AbstractModelTrainer):
     def encode_labels(self, data: DataFrame) -> None:
         data[bp.clazz] = self.encoder.fit_transform(data[bp.clazz])
 
+    def get_encoder(self) -> LabelEncoder:
+        return self.encoder
+
     def split_train_test_data(
             self,
             data: DataFrame,
@@ -60,9 +63,17 @@ class SVCModelTrainer(AbstractModelTrainer):
 
         return self.model.fit(X, y)
 
-    def evaluate_model(self, test_dataset: DataFrame, model_path: str = None) -> dict | None:
+    def evaluate_model(
+            self,
+            test_dataset: DataFrame,
+            model_path: str = None,
+            encoder_path: str = None) -> dict | None:
+
         if model_path is not None:
             self.load_model(model_path=model_path)
+
+        if encoder_path is not None:
+            self.load_encoder(encoder_path=encoder_path)
 
         y_test = test_dataset.loc[:, bp.clazz]
         X_test = test_dataset.drop(bp.clazz, axis=1)
@@ -71,9 +82,15 @@ class SVCModelTrainer(AbstractModelTrainer):
             return None
 
         y_pred = self.model.predict(X_test)
-        print(set(y_test) - set(y_pred))
+
+        y_test = self.encoder.inverse_transform(y_test)
+        y_pred = self.encoder.inverse_transform(y_pred)
+
         return classification_report(
             y_true=y_test, y_pred=y_pred, output_dict=True)
 
     def load_model(self, model_path: str) -> None:
         self.model = load(model_path)
+
+    def load_encoder(self, encoder_path: str) -> None:
+        self.encoder = load(encoder_path)

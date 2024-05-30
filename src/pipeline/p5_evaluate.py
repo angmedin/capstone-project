@@ -28,8 +28,9 @@ def evaluate_model(config_path: str) -> None:
     logging.info("Evaluating model.")
     model_trainer = SVCModelTrainer()
     model_path = config['train']['model_path']
+    encoder_path = config['featurize']['encoder_path']
     report = model_trainer.evaluate_model(
-        test_dataset=test_df, model_path=model_path)
+        test_dataset=test_df, model_path=model_path, encoder_path=encoder_path)
 
     if report is None:
         logging.error("Couldn't generate report. Aborting.")
