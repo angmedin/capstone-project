@@ -30,5 +30,6 @@ RUN git clone https://username:password@github.com/angmedin/capstone-project.git
 
 RUN pip install --no-cache-dir -r capstone-project/requirements.txt
 
-RUN dvc remote add -d myremote gdrive://1H34fOdxDOQeVa9F5db6_XIhkLrkjfIBg
+RUN dvc remote add -d myremote gdrive://APP_DATA_FOLDER
 RUN dvc remote modify myremote gdrive_use_service_account true
+RUN dvc remote modify myremote gdrive_acknowledge_abuse true
