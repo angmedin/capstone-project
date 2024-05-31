@@ -1,5 +1,6 @@
 import logging
 import warnings
+from os import getenv
 from typing import Any, Dict, List
 
 import mysql.connector as mysqlc
@@ -19,10 +20,10 @@ class MySQLQueryEngine:
                  user='dry_bean_user',
                  password='dry_bean_user_password',
                  database='dry_bean'):
-        self.host = host
-        self.user = user
-        self.password = password
-        self.database = database
+        self.host = getenv('DATABASE_HOST', host)
+        self.user = getenv('DATABASE_USER', user)
+        self.password = getenv('DATABASE_PASSWORD', password)
+        self.database = getenv('DATABASE_NAME', database)
         self.connection = None
 
     def connect(self) -> MySQLConnection | None:
