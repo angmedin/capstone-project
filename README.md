@@ -13,7 +13,15 @@ This report aims to put into practice the knowledge acquired during the course o
 Add a `.env` file in the root folder containing:
 
 GIT_USERNAME=<your_user>
-GIT_PASSWORD='<your_passwor>'
+GIT_PASSWORD='<your_password>'
+DATABASE_HOST=<host>
+DATABASE_USER=<dry_bean_user>
+MYSQL_ROOT_PASSWORD=<password>
+MYSQL_DATABASE=<dry_bean>
+MYSQL_USER=<dry_bean_user>
+MYSQL_PASSWORD=<dry_bean_user_password>
+APP_DATA_FOLDER=<folderId>
+GDRIVE_CREDENTIALS_DATA=<JSON string with credentials>
 
 Those credentials will be used to run the pipeline and track the metadata and changed files.
 
