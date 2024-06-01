@@ -16,9 +16,14 @@ services:
       - ./mysql-dump:/docker-entrypoint-initdb.d
 
   app:
-    build: ./
+    build:
+      context: ./
+      args:
+        GIT_USERNAME: ${GIT_USERNAME}
+        GIT_PASSWORD: ${GIT_PASSWORD}
+        APP_DATA_FOLDER: ${APP_DATA_FOLDER}
+
     container_name: ml-beans
-    restart: always
     environment:
       - DATABASE_HOST=host.docker.internal
       - DATABASE_USER=${MYSQL_USER}

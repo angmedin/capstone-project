@@ -4,9 +4,10 @@ from pandas import DataFrame, read_sql
 
 from components.mysql_query_engine import MySQLQueryEngine
 from entity.bean import BeanProperties as bp
+from utils.singleton_metaclass import SingletonMeta
 
 
-class DataReporter():
+class DataReporter(metaclass=SingletonMeta):
     def __init__(self) -> None:
         self.query_engine = MySQLQueryEngine()
         self.mysql_connection = self.query_engine.connect()
