@@ -39,7 +39,7 @@ class DataReporter(metaclass=SingletonMeta):
                     {bp.minor_axis_length}, {bp.aspect_ration}, {bp.eccentricity}, 
                     {bp.convex_area}, {bp.equiv_diameter}, {bp.extent}, 
                     {bp.solidity}, {bp.roundness}, {bp.compactness}, {bp.shape_factor_1}, 
-                    {bp.shape_factor_2}, {bp.shape_factor_2}, {bp.shape_factor_3}, 
+                    {bp.shape_factor_2}, {bp.shape_factor_3}, 
                     {bp.shape_factor_4}, {bp.clazz}
             FROM 
                 bean
